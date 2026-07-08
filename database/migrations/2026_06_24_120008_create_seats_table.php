@@ -11,13 +11,13 @@ return new class extends Migration
         Schema::create('seats', function (Blueprint $table) {
             $table->id();
             $table->foreignId('schedule_class_id')->constrained('schedule_classes')->cascadeOnDelete();
-            $table->string('seat_number', 10); // "12A"
-            $table->enum('status', ['available', 'locked', 'booked'])->default('available');
-            $table->timestamp('locked_until')->nullable(); // untuk seat locking sementara
+            $table->string('seat_number', 10);
+            $table->string('status', 20)->default('available'); // available, locked, booked
+            $table->timestamp('locked_until')->nullable();
             $table->timestamps();
 
             $table->unique(['schedule_class_id', 'seat_number']);
-            $table->index('status'); // sering difilter saat cek ketersediaan
+            $table->index('status');
         });
     }
 

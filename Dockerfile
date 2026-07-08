@@ -10,8 +10,9 @@ RUN apk add --no-cache \
     nodejs \
     npm \
     supervisor \
-    mysql-client \
-    && docker-php-ext-install pdo pdo_mysql opcache bcmath
+    postgresql-client \
+    postgresql-dev \
+    && docker-php-ext-install pdo pdo_mysql pdo_pgsql pgsql opcache bcmath
 
 # Install composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer

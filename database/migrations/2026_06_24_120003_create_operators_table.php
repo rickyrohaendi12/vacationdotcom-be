@@ -10,9 +10,9 @@ return new class extends Migration
     {
         Schema::create('operators', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['airline', 'train']);
-            $table->string('name'); // "Garuda Indonesia", "KAI"
-            $table->string('logo')->nullable(); // path gambar
+            $table->string('type', 20); // 'airline' atau 'train'
+            $table->string('name');
+            $table->string('logo')->nullable();
             $table->timestamps();
         });
     }

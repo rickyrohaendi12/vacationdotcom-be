@@ -10,9 +10,9 @@ return new class extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['airport', 'train_station']);
-            $table->string('code', 10); // kode IATA (CGK) atau kode stasiun (GMR)
-            $table->string('name'); // "Soekarno-Hatta", "Gambir"
+            $table->string('type', 20); // 'airport' atau 'train_station'
+            $table->string('code', 10);
+            $table->string('name');
             $table->string('city');
             $table->string('country')->default('Indonesia');
             $table->timestamps();

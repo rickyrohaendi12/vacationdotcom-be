@@ -10,11 +10,11 @@ return new class extends Migration
     {
         Schema::create('routes', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['flight', 'train']);
+            $table->string('type', 20); // 'flight' atau 'train'
             $table->foreignId('operator_id')->constrained('operators')->cascadeOnDelete();
             $table->foreignId('origin_location_id')->constrained('locations')->cascadeOnDelete();
             $table->foreignId('destination_location_id')->constrained('locations')->cascadeOnDelete();
-            $table->string('code'); // nomor penerbangan/kereta, "GA-204"
+            $table->string('code');
             $table->timestamps();
         });
     }

@@ -11,10 +11,10 @@ return new class extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->string('booking_code')->unique(); // "TRX-ABC123"
-            $table->enum('status', ['pending', 'paid', 'cancelled', 'expired'])->default('pending');
+            $table->string('booking_code')->unique();
+            $table->string('status', 20)->default('pending'); // pending, paid, cancelled, expired
             $table->decimal('total_amount', 14, 2);
-            $table->timestamp('expires_at'); // untuk auto-cancel kalau tidak dibayar
+            $table->timestamp('expires_at');
             $table->timestamps();
 
             $table->index('status');

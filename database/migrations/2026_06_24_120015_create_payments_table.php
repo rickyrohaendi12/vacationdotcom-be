@@ -11,10 +11,10 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('booking_id')->constrained('bookings')->cascadeOnDelete();
-            $table->string('method'); // "midtrans", "xendit"
-            $table->enum('status', ['pending', 'success', 'failed'])->default('pending');
+            $table->string('method');
+            $table->string('status', 20)->default('pending'); // pending, success, failed
             $table->decimal('amount', 14, 2);
-            $table->string('transaction_ref')->nullable(); // dari payment gateway
+            $table->string('transaction_ref')->nullable();
             $table->timestamp('paid_at')->nullable();
             $table->timestamps();
         });

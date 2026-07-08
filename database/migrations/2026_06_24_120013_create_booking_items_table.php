@@ -11,10 +11,10 @@ return new class extends Migration
         Schema::create('booking_items', function (Blueprint $table) {
             $table->id();
             $table->foreignId('booking_id')->constrained('bookings')->cascadeOnDelete();
-            $table->enum('itemable_type', ['flight', 'train', 'hotel']); // jenis item
-            $table->unsignedBigInteger('itemable_id'); // ID ke seats.id atau room_types.id
-            $table->decimal('price', 12, 2); // harga saat dibeli (snapshot)
-            $table->json('details')->nullable(); // tanggal checkin/checkout untuk hotel, dll
+            $table->string('itemable_type', 20); // flight, train, hotel
+            $table->unsignedBigInteger('itemable_id');
+            $table->decimal('price', 12, 2);
+            $table->json('details')->nullable();
             $table->timestamps();
 
             $table->index(['itemable_type', 'itemable_id']);

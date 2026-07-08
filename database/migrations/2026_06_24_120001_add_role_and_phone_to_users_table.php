@@ -9,7 +9,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->enum('role', ['user', 'admin'])->default('user')->after('email');
+            // PostgreSQL kompatibel: pakai string dengan default
+            $table->string('role')->default('user')->after('email');
             $table->string('phone')->nullable()->after('role');
         });
     }
